@@ -9,6 +9,6 @@
 2. Run Streamlit UI:
    ```bash
    cd app
-   streamlit run app/streamlit-app.py
+   streamlit run streamlit-app.py
    ```
 3. Have fun coding!
