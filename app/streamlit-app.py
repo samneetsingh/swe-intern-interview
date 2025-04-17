@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 from code_editor import code_editor
 import traceback
 from pathlib import Path
@@ -35,12 +36,13 @@ st.markdown("""
 # -----------------------------
 # Sidebar Problem Description
 # -----------------------------
-question_path = Path("questions/question_1/question_1.md")
-if question_path.exists():
-    question_text = question_path.read_text()
+question_path = os.path.join(os.path.dirname(__file__), "questions", "question_1", "question_1.md")
+try: 
+    with open(question_path, "r") as f:
+        question_text = f.read()
     st.sidebar.markdown(question_text)
-else:
-    st.sidebar.error("⚠️ Question file not found at /questions/question_1.md")
+except FileNotFoundError:
+    st.sidebar.error(f"⚠️ Question file not found at {question_path}")
 
 # -----------------------------
 # Default Code and Completion List
